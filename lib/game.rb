@@ -11,7 +11,7 @@ class Game
   # Shows the simplest possible way to get from one square to another
   # by outputting all squares the knight will stop on along the way
   def knight_moves(position = @initial_pos)
-    return if position.nil?
+    return if position.nil? || position == @final_pos
 
     knight = create_knight(position)
 
