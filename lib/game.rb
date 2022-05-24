@@ -14,9 +14,10 @@ class Game
   # by outputting all squares the knight will stop on along the way
   def knight_moves(queue = [@knight], count = 0)
     p count
-    return if count > 66 || queue.empty?
+    return if count > 1000 || queue.empty?
 
     current = queue[0]
+    p current.position if current.position == @final_pos
     return if current.position == @final_pos
 
     current = create_children(current)
