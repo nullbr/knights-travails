@@ -1,10 +1,12 @@
 # Move class to create nodes representing each move in the chess board
 class Knight
-  attr_accessor :position, :children
-
-  def initialize(array)
-    @position = array
+  attr_accessor :position, :parent, :children
+  
+  def initialize(position, parent)
+    @position = position
+    @parent = parent
     @children = []
+    @@history = [position]
   end
 
   def possible_moves
@@ -13,7 +15,7 @@ class Knight
     directions.each do |direction|
       x = @position[0] + direction[0]
       y = @position[1] + direction[1]
-      moves << [x, y] if x.between?(0, 7) && y.between?(0, 7)
+      moves << [x, y] if x.between?(0, 7) && y.between?(0, 7) && !@@history.include?([x, y])
     end
     moves
   end
