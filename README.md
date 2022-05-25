@@ -1,5 +1,7 @@
 ## PROJECT: KNIGHTS TRAVAILS
 
+[![wakatime](https://wakatime.com/badge/user/9450441a-ff7b-4805-b841-897d35ef3820/project/57893232-f7f1-47cc-ae26-26d4788cc6f5.svg)](https://wakatime.com/badge/user/9450441a-ff7b-4805-b841-897d35ef3820/project/57893232-f7f1-47cc-ae26-26d4788cc6f5)
+
 ### Assignment
 Your task is to build a function `knight_moves` that shows the simplest possible way to get from one square to another by outputting all squares the knight will stop on along the way.
 
