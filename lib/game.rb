@@ -13,15 +13,23 @@ class Game
       current_knight.children.each { |child| queue.push(child) }
       current_knight = queue.shift
     end
-    path_to_destination(current_knight.parent, [current_knight.position]).reverse
+    path = path_to_destination(current_knight.parent, [final_pos], initial_pos == final_pos)
+    print_path(path)
   end
 
-  def path_to_destination(parent, path)
+  def path_to_destination(parent, path, zero_path)
+    return path if zero_path
     return if parent.nil?
 
     path << parent.position
-    path_to_destination(parent.parent, path)
-    path
+    path_to_destination(parent.parent, path, false)
+    path.reverse
+  end
+
+  def print_path(path)
+    moves_num = path.size - 1
+    puts "You made it in #{moves_num} #{moves_num == 1 ? 'move' : 'moves'}!  Here's your path:"
+    path.each { |pos| p pos }
   end
 
   private
