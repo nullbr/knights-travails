@@ -2,26 +2,18 @@ require_relative 'knight'
 
 # Game class ...
 class Game
-  def initialize(initial_pos, final_pos)
-    @knight = create_knight(initial_pos)
-    @final_pos = final_pos
-  end
-
   # Takes initial position and final position, as separate arrays, on the board position on board
   # Shows the simplest possible way to get from one square to another
   # by outputting all squares the knight will stop on along the way
-  def knight_moves
-    current_node = @knight
-    queue = [current_node]
-    roots = []
-    until current_node.position == @final_pos
-      current_node = create_children(current_node)
-      roots << current_node.position
-      current_node.children.each { |child| queue.push(child) }
-      current_node = queue.shift
+  def knight_moves(initial_pos, final_pos)
+    current_knight = create_knight(initial_pos)
+    queue = [current_knight]
+    until current_knight.position == final_pos
+      current_knight = create_children(current_knight)
+      current_knight.children.each { |child| queue.push(child) }
+      current_knight = queue.shift
     end
-    path = path_to_destination(current_node.parent, [current_node.position])
-    path.reverse
+    path_to_destination(current_knight.parent, [current_knight.position]).reverse
   end
 
   def path_to_destination(parent, path)
@@ -32,7 +24,7 @@ class Game
     path
   end
 
-  # private
+  private
 
   def create_knight(pos, parent = nil)
     Knight.new(pos, parent)
